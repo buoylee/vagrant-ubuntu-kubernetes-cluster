@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hostname-service
+  labels:
+    name: hostname-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+#    nodePort: 32143
+  selector:
+    app: hostname 

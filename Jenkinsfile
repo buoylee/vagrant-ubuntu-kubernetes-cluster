@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
+                println "Triggered by git github webhook"
                 println "Build" 
             }
         }

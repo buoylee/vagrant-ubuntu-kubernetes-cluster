@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
       node.vm.network "private_network", ip: $node2IP
       node.vm.synced_folder "install/", "/root/install"
       node.vm.provider "virtualbox" do |v|
-        v.name = "autonode2"
+        v.name = "node2"
         #v.memory = "1024"
         v.cpus = "2"
       end

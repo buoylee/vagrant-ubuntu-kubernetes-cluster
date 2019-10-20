@@ -15,7 +15,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubeadm token create --print-join-command > /root/install/kubeadm_join_cmd.sh
 chmod +x /root/install/kubeadm_join_cmd.sh
 
-kubectl apply -f kube-flannel.yml
+kubectl apply -f /root/install/kube-flannel.yml
 
 unset http_proxy && unset https_proxy && unset NO_PROXY
 

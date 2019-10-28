@@ -4,3 +4,5 @@
 *.log
 install/others/
 install/kubeadm_join_cmd.sh
+install/proxy.sh
+install/http-proxy.conf

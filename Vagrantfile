@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 $proxyServer = "http://192.168.99.1:1087"
-$noProxy = "localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+$noProxy = "localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,10.0.0.0/8"
 $node1IP = "192.168.99.36"
 $node2IP = "192.168.99.37"
 $node3IP = "192.168.99.38"
@@ -41,7 +41,7 @@ EOF
 
 cat > /root/install/http-proxy.conf <<EOF
 [Service]
-Environment="HTTPS_PROXY=$1" "NO_PROXY=localhost,127.0.0.1"
+Environment="HTTPS_PROXY=$1" "NO_PROXY=$2"
 EOF
 
 chmod 777 proxy.sh
@@ -60,7 +60,7 @@ Vagrant.configure("2") do |config|
       node.vm.synced_folder "install/", "/root/install"
       node.vm.provider "virtualbox" do |v|
         v.name = "node1"
-        #v.memory = "1024"
+        v.memory = "1024"
         v.cpus = "2"
       end
       node.vm.provision "shell", inline: $configureProxy, args: [$proxyServer, $noProxy]
@@ -73,7 +73,7 @@ Vagrant.configure("2") do |config|
       node.vm.synced_folder "install/", "/root/install"
       node.vm.provider "virtualbox" do |v|
         v.name = "node2"
-        #v.memory = "1024"
+        v.memory = "2046"
         v.cpus = "2"
       end
       node.vm.provision "shell", inline: $configureBox
@@ -85,7 +85,7 @@ Vagrant.configure("2") do |config|
       node.vm.synced_folder "install/", "/root/install"
       node.vm.provider "virtualbox" do |v|
         v.name = "node3"
-        #v.memory = "1024"
+        v.memory = "2046"
         v.cpus = "2"
       end
       node.vm.provision "shell", inline: $configureBox

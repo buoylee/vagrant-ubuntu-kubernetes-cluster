@@ -2,3 +2,5 @@
 .idea/
 .DS_Store
 *.log
+install/others/
+install/kubeadm_join_cmd.sh

@@ -9,7 +9,10 @@ cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update
-apt-get install -y --allow-change-held-packages kubelet kubeadm kubectl
+# apt-get install -y --allow-change-held-packages kubelet
+apt-get install -y kubelet=1.15.6-00
+apt-get install -y kubeadm=1.15.6-00
+apt-get install -y --allow-downgrades kubectl=1.15.6-00
 
 # export INTERNAL_IP_FOR_CLUSTER=$(ifconfig enp0s8 |grep "inet addr" | awk '{print $2}' |awk -F: '{print $2}')
 # echo KUBELET_EXTRA_ARGS=--node-ip="$INTERNAL_IP_FOR_CLUSTER" >> /var/lib/kubelet/kubeadm-flags.env

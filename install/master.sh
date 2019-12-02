@@ -6,7 +6,7 @@ eval $(cat /root/install/proxy.sh)
 
 export MASTER_NODE_IP_FOR_KUBEADM=$(ifconfig enp0s8 |grep "inet addr" | awk '{print $2}' |awk -F: '{print $2}')
 
-kubeadm init --v=5 --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=$MASTER_NODE_IP_FOR_KUBEADM 
+kubeadm init --v=5 --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=$MASTER_NODE_IP_FOR_KUBEADM --kubernetes-version=v1.15.6 
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
